@@ -1,84 +1,78 @@
+// Password Generator
+// Add an event listener to the button to generate the password.
+document.querySelector("#generate").addEventListener("click", generatePassword);
+
 // Function to generate a new secure password
 function generatePassword() {
+  
+  // Generate password
+  let password = "";
+  let length = prompt("How long do you want your password to be? Your password must be 8-128 characters long.");
+    // Validate the user's input.
+    if (length < 8 || length > 128) {
+      window.alert("Password length must be between 8 and 128 characters long. Please try again.");
+      return;
+    }
+    if (isNaN(length)) {
+      window.alert("You must enter a number. Please try again.")
+      return;
+    }
+  
+  // Confirm the amount of characters
+  window.confirm("Your password will have " + length + " charachers.");
+
   // Get the user's input for password criteria.
   var criteria = {
-    length: window.prompt("How long do you want your password to be? (8-128 characters)"),
-    lowercase: window.confirm("Do you want to include lowercase letters? Click 'OK' to confirm."),
-    uppercase: window.confirm("Do you want to include uppercase letters? Click 'OK' to confirm."),
-    numeric: window.confirm("Do you want to include numeric characters? Click 'OK' to confirm."),
-    special: window.confirm("Do you want to include special characters? Click 'OK' to confirm."),
+    lowercase: window.confirm("Do you want to include lowercase letters? Click 'OK' to select."),
+    uppercase: window.confirm("Do you want to include uppercase letters? Click 'OK' to select."),
+    numeric: window.confirm("Do you want to include numeric characters? Click 'OK' to select."),
+    special: window.confirm("Do you want to include special characters? Click 'OK' to select."),
   };
 
-  // Validate the user's input.
-  if (criteria.length < 8 || criteria.length > 128) {
-    window.alert("Password length must be between 8 and 128 characters.");
-    return;
+  // Array to declare character types
+  var characters = [];
+  if (criteria.lowercase === true) {
+   characters.concat("abcdefghijklmnopqrstuvwxyz");
+   window.alert("Your password will contain at least one lowercase character.");
+  } else {
+    window.alert("Your password will not contain any lowercase characters");
   }
+  if (criteria.uppercase === true) {
+   characters.concat("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+   window.alert("Your password will contain at least one uppercase character.");
+  } else {
+    window.alert("Your password will not contain any uppercase characters");
+  }
+  if (criteria.numeric === true) {
+   characters.concat("0123456789");
+   window.alert("Your password will contain at least one numberic character.");
+  } else {
+    window.alert("Your password will not contain any numberic characters");
+  }
+  if (criteria.special === true) {
+   characters.concat("!@#$%^&*()_+");
+   window.alert("Your password will contain at least one special character.");
+  } else {
+    window.alert("Your password will not contain any special characters");
+  }
+
   if (!criteria.lowercase && !criteria.uppercase && !criteria.numeric && !criteria.special) {
     window.alert("You must select at least one character type.");
     return;
   }
 
-  // Confirm the amount of characters
-  window.confirm("Your password will have " + criteria.length + " charachers.");
-
-  // Confirm the user's input.
-  if (criteria.lowercase === true) {
-    window.alert("Your password will contain lowercase characters.");
-  } else {
-    window.alert("Your password will not contain lowercase characters");
+  for (let i = 0; i < length; i++) {
+    const index = characters.concat(Math.floor(Math.random() * characters.length));
+    password = index;
+    // Display the password to the user.
+    window.alert("Your password is: " + password);
+    return;
   }
-  if (criteria.uppercase === true) {
-    window.alert("Your password will contain uppercase characters.");
-  } else {
-    window.alert("Your password will not contain uppercase characters");
-  }
-  if (criteria.numeric === true) {
-    window.alert("Your password will contain numberic characters.");
-  } else {
-    window.alert("Your password will not contain numberic characters");
-  }
-  if (criteria.special === true) {
-    window.alert("Your password will contain special characters.");
-  } else {
-    window.alert("Your password will not contain special characters");
-  }
-
-  // Generate the password.
-  let password = "";
-  for (let i = 0; i = criteria.length; i++) {
-    // Get a random character from the selected character types.
-    let characters = {
-      lowercaseOptions: "abcdefghijklmnopqrstuvwxyz",
-      uppercaseOptions: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      numbericOptions: "0123456789",
-      specialOptions: "!@#$%^&*()-_=+",
-    }
-
-    if (criteria.lowercase) {
-      characters += lowercaseOptions.concat(Math.floor(Math.random()));
-    } else if (criteria.uppercase) {
-      characters += uppercaseOptions.concat(Math.floor(Math.random()));
-    } else if (criteria.numeric) {
-      characters += numericOptions.concat(Math.floor(Math.random()));
-    } else if (criteria.special) {
-      characters += specialOptions.concat(Math.floor(Math.random()));
-    }
-
-    // Add the character to the password.
-    password += characters;
-  }
-
+  
   // Call the fuction
   generatePassword()
-
-  // Display the password to the user.
-  window.alert("Your password is: " + password);
-};
-
-// Add an event listener to the button to generate the password.
-document.querySelector("#generate").addEventListener("click", generatePassword);
-
+  
+}
 
 /*GIVEN I need a new, secure password
 WHEN I click the button to generate a password
