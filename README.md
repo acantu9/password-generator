@@ -12,19 +12,19 @@ N/A
 
 1. Open the app in your browser using the "Password Generator" link below.
 
-[Password Generator](https://www.google.com)
+[Password Generator](https://acantu9.github.io/password-generator/)
 
 2. Click the "Generate Password" button.
 
-<img>
+<img src = ".assets/img1">
 
 3. Follow the prompts.
 
-<img>
+<img src = ".assets/img2">
 
 4. A new password will be generated and displayed.
 
-<img>
+<img src = ".assets/img3">
 
 ## Credits
 
